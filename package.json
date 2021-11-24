@@ -1,6 +1,6 @@
 {
   "name": "@hoestreich/react-schema-form",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "React json schema form based on mui v5",
   "keywords": [
     "json schema",
