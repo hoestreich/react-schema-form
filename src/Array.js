@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react'
-import withStyles from '@mui/styles/withStyles'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import IconButton from '@mui/material/IconButton'
@@ -11,26 +10,9 @@ import utils from './utils'
 import ComposedComponent from './ComposedComponent'
 import type { Localization } from './types'
 
-const styles = (theme) => ({
-  arrayItem: {
-    position: 'relative',
-    padding: theme.spacing(),
-    marginTop: theme.spacing(),
-    display: 'flex'
-  },
-  deleteItemButton: {
-    margin: [[theme.spacing(-1), theme.spacing(-1), 'auto', 'auto']]
-  },
-  addButton: {
-    marginLeft: theme.spacing()
-  },
-  elementsContainer: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  title: {
-    margin: 'auto 0'
-  }
+const ElementsContainer = styled('div')({
+  display: 'flex',
+  flexWrap: 'wrap'
 })
 
 type Props = {
@@ -204,7 +186,6 @@ class ArrayComponent extends Component<Props, State> {
 
   render() {
     const {
-      classes,
       form,
       builder,
       model,
@@ -226,13 +207,18 @@ class ArrayComponent extends Component<Props, State> {
       })
       arrays.push(
         <Card
-          className={classes.arrayItem}
+          sx={{
+            position: 'relative',
+            padding: 1,
+            marginTop: 1,
+            display: 'flex'
+          }}
           key={(item && item[ArrayComponent.ITEM_ID]) || i}
         >
-          <div className={classes.elementsContainer}>{forms}</div>
+          <ElementsContainer>{forms}</ElementsContainer>
           <IconButton
             onClick={this.onDelete(i)}
-            className={classes.deleteItemButton}
+            sx={{ margin: [[-1, -1, 'auto', 'auto']] }}
             size='large'
           >
             <DeleteIcon fontSize='small' />
@@ -241,9 +227,14 @@ class ArrayComponent extends Component<Props, State> {
       )
     }
     return (
-      <div className={classes.root}>
+      <div>
         <div style={{ display: 'flex' }}>
-          <FormLabel required={form.required} className={classes.title}>
+          <FormLabel
+            required={form.required}
+            sx={{
+              margin: 'auto 0'
+            }}
+          >
             {form.title && getLocalizedString(form.title)}
           </FormLabel>
           {this.getAddButton()}
@@ -254,4 +245,4 @@ class ArrayComponent extends Component<Props, State> {
   }
 }
 
-export default ComposedComponent(withStyles(styles)(ArrayComponent))
+export default ComposedComponent(ArrayComponent)

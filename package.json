@@ -35,7 +35,6 @@
   "peerDependencies": {
     "@mui/icons-material": ">=5.1.0",
     "@mui/material": ">=5.1.0",
-    "@mui/styles": ">=5.1.0",
     "react": ">=16.13.1",
     "react-dom": ">=16.13.1",
     "react-is": ">=16.13.1"
@@ -43,7 +42,6 @@
   "devDependencies": {
     "@mui/icons-material": ">=5.1.0",
     "@mui/material": ">=5.1.0",
-    "@mui/styles": ">=5.1.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "enzyme": "^3.11.0",

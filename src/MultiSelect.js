@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react'
-import withStyles from '@mui/styles/withStyles';
 import MenuItem from '@mui/material/MenuItem'
 import MuiSelect from '@mui/material/Select'
 import InputLabel from '@mui/material/InputLabel'
@@ -9,26 +8,6 @@ import Chip from '@mui/material/Chip'
 import ComposedComponent from './ComposedComponent'
 import utils from './utils'
 import type { Localization } from './types'
-
-const styles = (theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  chip: {
-    margin: theme.spacing(0.25)
-  },
-  menuItem: {
-    fontWeight: theme.typography.fontWeightRegular
-  },
-  selectedMenuItem: {
-    fontWeight: theme.typography.fontWeightMedium
-  }
-})
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
@@ -82,7 +61,6 @@ class MultiSelect extends Component<Props, State> {
   render() {
     const {
       form,
-      classes,
       localization: { getLocalizedString }
     } = this.props
     const { currentValue } = this.state
@@ -91,10 +69,10 @@ class MultiSelect extends Component<Props, State> {
       <MenuItem
         key={item.value}
         value={item.value}
-        className={
+        sx={
           currentValue.indexOf(item.value) === -1
-            ? classes.menuItem
-            : classes.selectedMenuItem
+            ? { fontWeight: 'typography.fontWeightRegular' }
+            : { fontWeight: 'typography.fontWeightMedium' }
         }
       >
         {item.name && getLocalizedString(item.name)}
@@ -113,12 +91,12 @@ class MultiSelect extends Component<Props, State> {
           onChange={this.onSelected}
           MenuProps={MenuProps}
           renderValue={(selected) => (
-            <div className={classes.chips}>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               {selected.map((value) => (
                 <Chip
                   key={value}
                   label={getTitle(value) && getLocalizedString(getTitle(value))}
-                  className={classes.chip}
+                  sx={{ margin: 0.25 }}
                 />
               ))}
             </div>
@@ -131,4 +109,4 @@ class MultiSelect extends Component<Props, State> {
   }
 }
 
-export default ComposedComponent(withStyles(styles)(MultiSelect))
+export default ComposedComponent(MultiSelect)

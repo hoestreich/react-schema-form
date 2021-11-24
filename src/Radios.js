@@ -5,18 +5,8 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import FormLabel from '@mui/material/FormLabel'
 import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
-import withStyles from '@mui/styles/withStyles';
 import ComposedComponent from './ComposedComponent'
 import type { Localization } from './types'
-
-const styles = (theme) => ({
-  formControl: {
-    marginTop: theme.spacing(1)
-  },
-  group: {
-    margin: theme.spacing(1, 0)
-  }
-})
 
 type Props = {
   classes: any,
@@ -54,7 +44,7 @@ class Radios extends Component<Props> {
     return (
       <FormControl
         component='fieldset'
-        className={classes.formControl}
+        sx={{ marginTop: 1 }}
         {...form.otherProps}
       >
         <FormLabel component='legend' required={form.required}>
@@ -64,7 +54,7 @@ class Radios extends Component<Props> {
           value={value}
           name={form.title}
           onChange={onChangeValidate}
-          className={classes.group}
+          sx={{ margin: 1 }}
         >
           {this.renderItems(form)}
         </RadioGroup>
@@ -73,4 +63,4 @@ class Radios extends Component<Props> {
   }
 }
 
-export default ComposedComponent(withStyles(styles)(Radios))
+export default ComposedComponent(Radios)
